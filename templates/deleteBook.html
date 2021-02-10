@@ -1,0 +1,28 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Delete Book?{% endblock %}
+
+{% block header %}Delete Book?{% endblock %}
+
+{% block content %}
+
+    <!-- DISPLAY ERROR MESSAGE -->
+    <div class="error">
+        <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+    </div>
+
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <p style="font-size: 15pt; text-align: center; ">Are you sure you would like to delete "{{ item }}" from the database?</p>
+
+        <a href="{% url 'viewBooks' %}"><button class="button" type="button">CANCEL</button></a>
+        <input type="submit" value="DELETE" class="button delete-button">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Home{% endblock %}
+
+{% block header %}Books App{% endblock %}
+
+{% block content %}
+
+<div class="search">
+    <h2>Search Books App</h2>
+    <form action="{% url 'search_results' %}" method="GET">
+        <input name="q" type="text" placeholder="Search Books...">
+    </form>
+</div>
+
+<div class="search">
+    <h2>Search Open Library API</h2>
+    <form action="{% url 'searchLibrary' %}" method="POST">
+        {% csrf_token %}
+        <input name="title" type="text" placeholder="Search for Title" required style="margin-bottom: 10px">
+        <input name="author" type="text" placeholder="Filter by Author" style="margin-bottom: 10px">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

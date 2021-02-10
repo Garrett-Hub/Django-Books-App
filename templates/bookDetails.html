@@ -1,0 +1,40 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Book Details{% endblock %}
+
+{% block header %}Book Details{% endblock %}
+
+{% block content %}
+
+
+<div class="form">
+
+    <!-- DISPLAY ERROR MESSAGE IF FORM IS NOT VALID -->
+    <div class="error">
+        <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+    </div>
+
+    <form method="POST" action="../bookDetails/">
+
+        <div>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.as_p }}
+        </div>
+        <div>
+            <input type="submit" class="button" value="CONFIRM CHANGES">
+            <a href="../{{ form.pk }}deleteBook/"><button class="button" type="button">DELETE</button></a>
+            <a href="{% url 'viewBooks' %}"><button class="button" type="button">CANCEL</button></a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

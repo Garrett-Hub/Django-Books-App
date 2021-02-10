@@ -1,0 +1,40 @@
+{% extends "books.html" %}
+{% load staticfiles %}
+
+{% block title %}Book App - View Authors{% endblock %}
+
+{% block header %}View Authors{% endblock %}
+
+{% block content %}
+
+<!-- Button to test the modal open/close functions -->
+<!-- Couldn't get the modal to work properly.  Removing trash can icons and doing it the easy way for now.
+<button onclick="document.getElementById('delete_id').style.display='block'" class="button">Open Modal (for testing modal open/close)</button><br><br>
+-->
+
+<table class="display-table">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Modify Item</th>
+    </tr>
+
+    {% for author in authors %}
+    <tr class="display-row">
+        <td>{{ author.firstName }}</td>
+        <td>{{ author.lastName }}</td>
+        <td class="center-content">
+            <a href="../{{ author.pk }}/authorDetails/"><img src="/static/images/icon_edit.png" alt="edit" class="icon"></a>
+            <!-- <a href=""><img src="/static/images/icon_delete.png" alt="delete" class="icon"></a> -->
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
+
+<!-- CONFIRM DELETE MODAL -->
+{% block extras %}
+    {% include "deleteModal.html" %}
+{% endblock %}

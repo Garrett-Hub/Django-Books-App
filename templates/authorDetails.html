@@ -1,0 +1,40 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Author Details{% endblock %}
+
+{% block header %}Author Details{% endblock %}
+
+{% block content %}
+
+
+<div class="form">
+
+    <!-- DISPLAY ERROR MESSAGE IF FORM IS NOT VALID -->
+    <div class="error">
+        <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+    </div>
+
+    <form name="authorForm" method="POST" action="../authorDetails/">
+
+        <div>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.as_p }}
+        </div>
+        <div>
+            <input type="submit" class="button" value="CONFIRM CHANGES">
+            <a href="../{{ form.pk }}deleteAuthor/"><button class="button" type="button">DELETE</button></a>
+            <a href="{% url 'viewAuthors' %}"><button class="button" type="button">CANCEL</button></a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

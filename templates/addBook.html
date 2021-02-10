@@ -1,0 +1,39 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Add Book{% endblock %}
+
+{% block header %}Add New Book{% endblock %}
+
+{% block content %}
+
+
+<div class="form">
+
+    <!-- DISPLAY ERROR MESSAGE IF FORM IS NOT VALID -->
+    <div class="error">
+        <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+    </div>
+
+    <form method="POST" action="{% url 'addBook' %}">
+
+        <div>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.as_p }}
+        </div>
+        <div>
+            <input type="submit" class="button" value="ADD BOOK">
+            <a href="{% url 'books' %}"><button class="button" type="button">CANCEL</button></a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

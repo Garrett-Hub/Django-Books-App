@@ -1,0 +1,42 @@
+{% extends "books.html" %}
+
+{% block title %}Book App - Search Books{% endblock %}
+
+{% block header %}Search Results{% endblock %}
+
+{% block content %}
+
+<div class="search">
+    <form action="{% url 'search_results' %}" method="GET">
+        <input name="q" type="text" placeholder="Search Books...">
+    </form>
+</div>
+
+<table class="display-table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year Published</th>
+        <th>Modify Item</th>
+    </tr>
+
+    {% for book in object_list %}
+    <tr class="display-row">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td class="center-content">
+            <a href="../{{ book.pk }}/bookDetails/"><img src="/static/images/icon_edit.png" alt="edit" class="icon"></a>
+            <!-- <a href=""><img src="/static/images/icon_delete.png" alt="delete" class="icon"></a> -->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="description">
+            {{ book.description }}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
